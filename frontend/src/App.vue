@@ -101,6 +101,11 @@
             Select a field to control irrigation
           </div>
         </div>
+
+        <!-- Impact Tab -->
+        <div v-if="activeTab === 'Impact'">
+          <WaterSavingsChart />
+        </div>
       </div>
     </main>
   </div>
@@ -113,9 +118,10 @@ import AnalyticsChart from './components/AnalyticsChart.vue'
 import FieldsManager from './components/FieldsManager.vue'
 import WeatherWidget from './components/WeatherWidget.vue'
 import IrrigationControl from './components/IrrigationControl.vue'
+import WaterSavingsChart from './components/WaterSavingsChart.vue'
 
 const activeTab = ref('Dashboard')
-const tabs = ['Dashboard', 'Fields', 'Weather', 'Irrigation']
+const tabs = ['Dashboard', 'Fields', 'Weather', 'Irrigation', 'Impact']
 const fields = ref([
   {
     field_id: '1',
