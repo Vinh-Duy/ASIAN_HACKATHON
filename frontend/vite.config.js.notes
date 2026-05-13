@@ -1,0 +1,5 @@
+// Frontend build optimization notes
+// - Using Vite for fast HMR
+// - TailwindCSS for styling
+// - Chart.js for analytics visualization
+// - Vue 3 Composition API
