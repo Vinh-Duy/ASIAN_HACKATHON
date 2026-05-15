@@ -1,7 +1,5 @@
 # 📚 AgriDrop - English Materials for ASIA Hackathon Judges
 
-**Đây là hướng dẫn cho bạn về tất cả các materials tiếng Anh dành cho giám khảo.**
-
 ---
 
 ## 🎯 For Judges: Read These Files in This Order

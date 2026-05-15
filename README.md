@@ -244,10 +244,6 @@ AgriDrop/
 - [ ] SQL injection protection
 - [ ] CORS configuration
 
-## 📝 License
-
-MIT License - Free to use for educational & commercial purposes
-
 ## 👥 Team
 
 AgriDrop project developed for **ASIA Hackathon 2026**
