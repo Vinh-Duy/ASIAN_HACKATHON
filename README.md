@@ -4,37 +4,37 @@
 ![Version](https://img.shields.io/badge/Version-1.0.0-blue?style=flat-square)
 ![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 
-**AgriDrop** là hệ thống tưới tiêu chính xác thông minh sử dụng dữ liệu vệ tinh, AI/ML và IoT để tối ưu hóa sử dụng nước trong nông nghiệp. Dự án nhằm giải quyết vấn đề hạn hán tại Tây Nguyên và các vùng khác.
+**AgriDrop** is a smart precision irrigation system using satellite data, AI/ML and IoT to optimize water usage in agriculture. The project aims to solve the water scarcity problems in Central Highlands and other regions.
 
-## 🎯 Vấn đề & Giải pháp
+## 🎯 Problem & Solution
 
-### Vấn đề
-- Nông dân tưới nước theo "cảm tính", thấy đất khô là bơm nước lênh láng
-- Lãng phí 30-40% lượng nước ngầm
-- Hạn hán kéo dài tại Tây Nguyên ảnh hưởng đến trồng cà phê, sầu riêng
+### Problem
+- Farmers irrigate based on "intuition" - when soil looks dry, they pump water carelessly
+- Waste 30-40% of groundwater
+- Prolonged drought in Central Highlands affects coffee and durian cultivation
 
-### Giải pháp AgriDrop
-1. **Tưới tiêu chính xác (Precision Irrigation)** kết hợp dữ liệu vệ tinh
-2. **AI** tính toán Evapotranspiration (ET0) - lượng nước thực sự cần thiết
-3. **Cảm biến độ ẩm** + **Dữ liệu thời tiết thực tế** từ OpenWeather API
-4. **Điều khiển tự động** van tưởi nhỏ giọt (IoT)
+### AgriDrop Solution
+1. **Precision Irrigation** combined with satellite data
+2. **AI** calculates Evapotranspiration (ET0) - the actual water needed
+3. **Soil moisture sensors** + **Real-time weather data** from OpenWeather API
+4. **Automatic control** of drip irrigation valves (IoT)
 
-## 🏗️ Kiến trúc Hệ thống
+## 🏗️ System Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │                    Frontend Dashboard (React/Vue)            │
-│  - Bản đồ trực tuyến + Chỉ số sức khỏe cây (NDVI, NDWI)   │
-│  - Điều khiển van tưới, xem dự báo thời tiết               │
+│  - Online map + Crop health indices (NDVI, NDWI)           │
+│  - Control irrigation valves, view weather forecast        │
 └──────────────────┬──────────────────────────────────────────┘
                    │ API Calls
 ┌──────────────────▼──────────────────────────────────────────┐
 │              Backend API (Python FastAPI)                     │
-│  ├─ /api/v1/fields - Quản lý thửa ruộng                    │
-│  ├─ /api/v1/analysis - Phân tích toàn bộ                   │
-│  ├─ /api/v1/irrigation - Điều khiển tưới tiêu             │
-│  ├─ /api/v1/weather - Dữ liệu thời tiết                   │
-│  └─ /api/v1/satellite - Chỉ số vệ tinh                     │
+│  ├─ /api/v1/fields - Field management                      │
+│  ├─ /api/v1/analysis - Complete analysis                   │
+│  ├─ /api/v1/irrigation - Irrigation control                │
+│  ├─ /api/v1/weather - Weather data                         │
+│  └─ /api/v1/satellite - Satellite indices                  │
 └──────────────────┬──────────────────────────────────────────┘
                    │
        ┌───────────┼───────────┐
@@ -48,10 +48,10 @@
 
 ## 🚀 Quick Start
 
-### Yêu cầu
+### Requirements
 - Python 3.9+
 - Node.js 16+
-- API Key từ OpenWeather (miễn phí)
+- API Key from OpenWeather (free)
 
 ### 1. Backend Setup
 
@@ -59,106 +59,106 @@
 # Clone repo
 cd backend
 
-# Tạo virtual environment
+# Create virtual environment
 python -m venv venv
 source venv/bin/activate  # macOS/Linux
-# hoặc: venv\Scripts\activate  # Windows
+# or: venv\Scripts\activate  # Windows
 
-# Cài đặt dependencies
+# Install dependencies
 pip install -r requirements.txt
 
-# Tạo .env file
+# Create .env file
 cp ../.env.example ../.env
-# Điền OPENWEATHER_API_KEY vào .env
+# Fill in OPENWEATHER_API_KEY in .env
 
-# Chạy server
+# Run server
 uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 ```
 
-Server chạy tại: `http://localhost:8000`
+Server runs at: `http://localhost:8000`
 - API Docs (Swagger): `http://localhost:8000/docs`
 
 ### 2. Frontend Setup
 
 ```bash
-# Mở terminal mới
+# Open new terminal
 cd frontend
 
-# Cài dependencies
+# Install dependencies
 npm install
 
 # Dev server
 npm run dev
 ```
 
-Dashboard chạy tại: `http://localhost:5173`
+Dashboard runs at: `http://localhost:5173`
 
 ## 📊 API Endpoints
 
 ### Fields Management
 ```bash
-POST   /api/v1/fields              # Tạo thửa ruộng
-GET    /api/v1/fields              # Danh sách thửa
-GET    /api/v1/fields/{field_id}   # Chi tiết thửa
+POST   /api/v1/fields              # Create field
+GET    /api/v1/fields              # List fields
+GET    /api/v1/fields/{field_id}   # Field details
 ```
 
 ### Weather & Satellite Data
 ```bash
-GET    /api/v1/weather                    # Thời tiết hiện tại
-GET    /api/v1/weather/forecast           # Dự báo 7 ngày
+GET    /api/v1/weather                    # Current weather
+GET    /api/v1/weather/forecast           # 7-day forecast
 GET    /api/v1/satellite/indices          # NDVI, NDWI
-GET    /api/v1/satellite/water-stress     # Bản đồ stress
+GET    /api/v1/satellite/water-stress     # Stress map
 ```
 
 ### Field Analysis
 ```bash
-GET    /api/v1/analysis/{field_id}        # Phân tích toàn bộ
+GET    /api/v1/analysis/{field_id}        # Complete analysis
 ```
 
 ### Irrigation Control
 ```bash
-POST   /api/v1/irrigation/trigger         # Kích hoạt tưới
-POST   /api/v1/irrigation/schedule        # Lên lịch tưới
-GET    /api/v1/irrigation/schedules       # Xem lịch
-GET    /api/v1/irrigation/savings         # Tính nước tiết kiệm
+POST   /api/v1/irrigation/trigger         # Start irrigation
+POST   /api/v1/irrigation/schedule        # Schedule irrigation
+GET    /api/v1/irrigation/schedules       # View schedules
+GET    /api/v1/irrigation/savings         # Calculate water savings
 ```
 
 ## 🤖 AI/ML Engine
 
 ### Evapotranspiration (ET0) Calculation
-Sử dụng **Hargreaves-Samani Formula**:
+Using **Hargreaves-Samani Formula**:
 ```
 ET0 = 0.0023 * (T + 17.8) * √(Tmax - Tmin) * Ra
 ```
 
-Với:
-- T = Nhiệt độ trung bình (°C)
-- Tmax, Tmin = Nhiệt độ cao/thấp
-- Ra = Bức xạ ngoài khí quyển
+Where:
+- T = Mean temperature (°C)
+- Tmax, Tmin = Max/Min temperature
+- Ra = Extraterrestrial radiation
 
 ### Crop Water Requirement
 ```
 ETc = ET0 × Kc × (Soil_Moisture_Factor)
 ```
 
-Kc (hệ số cây):
-- Cà phê trưởng thành: 0.7
-- Sầu riêng trưởng thành: 0.8
+Kc (crop coefficient):
+- Mature coffee: 0.7
+- Mature durian: 0.8
 
 ## 📈 Features
 
-### ✅ Hiện tại
-- [x] API backend hoàn chỉnh
+### ✅ Current
+- [x] Complete backend API
 - [x] Dashboard frontend React/Vue
-- [x] Tính ET0 từ dữ liệu thời tiết
-- [x] Lấy dữ liệu từ OpenWeather API (thực)
+- [x] Calculate ET0 from weather data
+- [x] Get data from OpenWeather API (real)
 - [x] Mock satellite data (NDVI, NDWI)
-- [x] Điều khiển van tưới (mô phỏng)
-- [x] Lập lịch tưới tiêu
+- [x] Irrigation valve control (simulation)
+- [x] Irrigation scheduling
 
-### 🔄 Sắp tới (Production Ready)
-- [ ] Kết nối Google Earth Engine API
-- [ ] Database PostgreSQL
+### 🔄 Coming Soon (Production Ready)
+- [ ] Google Earth Engine API integration
+- [ ] PostgreSQL database
 - [ ] Authentication & Authorization
 - [ ] Mobile app (React Native/Flutter)
 - [ ] Real IoT valve control
@@ -221,20 +221,20 @@ AgriDrop/
 
 ## 💡 Demo Walkthrough
 
-1. **Tạo thửa ruộng**: Nhập GPS + diện tích
-2. **Xem phân tích**: Dashboard hiển thị độ ẩm đất, ET0, khuyến nghị
-3. **Kiểm tra thời tiết**: Dự báo 7 ngày từ OpenWeather
-4. **Điều khiển tưới**: 
-   - **Auto Mode**: Hệ thống tự tưới dựa trên độ ẩm
-   - **Manual Mode**: Bấm button để kích hoạt van
-5. **Xem kết quả**: Lượng nước tiết kiệm so với tưới truyền thống (40% tối ưu)
+1. **Create field**: Enter GPS + area
+2. **View analysis**: Dashboard shows soil moisture, ET0, recommendations
+3. **Check weather**: 7-day forecast from OpenWeather
+4. **Control irrigation**: 
+   - **Auto Mode**: System automatically irrigates based on moisture
+   - **Manual Mode**: Click button to activate valve
+5. **See results**: Water savings compared to traditional irrigation (40% optimized)
 
 ## 📊 Expected Results
 
-- **Tiết kiệm nước**: 30-40%
-- **Tiết kiệm chi phí**: ~20-30% (điện, nước)
-- **Tăng năng suất**: +15-20% (cây khỏe hơn)
-- **ROI**: 6-12 tháng
+- **Water savings**: 30-40%
+- **Cost savings**: ~20-30% (electricity, water)
+- **Productivity increase**: +15-20% (healthier crops)
+- **ROI**: 6-12 months
 
 ## 🔐 Security
 
@@ -246,11 +246,11 @@ AgriDrop/
 
 ## 📝 License
 
-MIT License - Tự do sử dụng cho mục đích giáo dục & thương mại
+MIT License - Free to use for educational & commercial purposes
 
 ## 👥 Team
 
-Dự án AgriDrop được phát triển cho **ASIA Hackathon 2026**
+AgriDrop project developed for **ASIA Hackathon 2026**
 
 ## 📞 Support
 
@@ -260,4 +260,4 @@ Dự án AgriDrop được phát triển cho **ASIA Hackathon 2026**
 
 ---
 
-**"Nông nghiệp thông minh, tương lai xanh. 🌾💚"**
+**"Smart agriculture, green future. 🌾💚"**

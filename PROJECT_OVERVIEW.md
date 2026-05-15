@@ -1,82 +1,82 @@
 # 🌾 AgriDrop - Smart Precision Irrigation System
 
-## Project Overview (Vietnamese)
+## Project Overview (English)
 
-**AgriDrop** là một hệ thống tưới tiêu chính xác thông minh dùng dữ liệu vệ tinh, AI/ML, và IoT để tối ưu hóa sử dụng nước trong nông nghiệp. Dự án giải quyết vấn đề lãng phí nước ở Tây Nguyên và các vùng khác trên thế giới.
-
----
-
-## 📋 Vấn Đề Cần Giải Quyết
-
-### Tình Trạng Hiện Tại
-- Nông dân tưới nước theo **"cảm tính"** - nhìn đất khô là bơm nước lênh láng
-- **Lãng phí 30-40%** lượng nước ngầm
-- Trồng **cà phê, sầu riêng tốn khổng lồ nước**
-- Hạn hán kéo dài ở Tây Nguyên ảnh hưởng đến sản xuất
-
-### Nỗi Đau Của Nông Dân
-- Không biết chính xác khi nào cần tưới
-- Không biết tưới bao nhiêu lít
-- Lãng phí tiền nước, điện
-- Cây bị stress, năng suất giảm
+**AgriDrop** is a smart precision irrigation system using satellite data, AI/ML, and IoT to optimize water usage in agriculture. The project solves the water waste problem in Central Highlands and other regions worldwide.
 
 ---
 
-## ✅ Giải Pháp AgriDrop
+## 📋 Problem to Solve
 
-### Cách Hoạt Động
+### Current Situation
+- Farmers irrigate based on **"intuition"** - when soil looks dry, they pump water carelessly
+- **Waste 30-40%** of groundwater
+- Growing **coffee and durian requires enormous water**
+- Prolonged drought in Central Highlands affects production
+
+### Farmers' Pain Points
+- Don't know exactly when to irrigate
+- Don't know how much water to use
+- Waste water, electricity money
+- Crops get stressed, productivity drops
+
+---
+
+## ✅ AgriDrop Solution
+
+### How It Works
 ```
-1. Nông dân → Nhập GPS + loại cây + diện tích
-2. Hệ thống → Lấy dữ liệu vệ tinh + thời tiết real-time
-3. AI/ML → Tính ET0 (lượng nước cây mất)
-4. Khuyến nghị → "Tưới 15L/cây vào 5h chiều"
-5. IoT → Van tưới tự động mở (optional)
+1. Farmer → Enter GPS + crop type + area
+2. System → Get satellite data + real-time weather
+3. AI/ML → Calculate ET0 (how much water crops lose)
+4. Recommendation → "Water 15L/plant at 5 PM"
+5. IoT → Irrigation valve opens automatically (optional)
 ```
 
-### Lợi Ích
-- 💧 **Tiết kiệm nước: 30-40%**
-- 💰 **Tiết kiệm chi phí: 20-30%**
-- 📈 **Tăng năng suất: 15-20%**
-- 🌱 **Cây khỏe hơn, bền vững hơn**
+### Benefits
+- 💧 **Water savings: 30-40%**
+- 💰 **Cost savings: 20-30%**
+- 📈 **Productivity increase: 15-20%**
+- 🌱 **Healthier crops, more sustainable**
 
 ---
 
-## 🏗️ Kiến Trúc Hệ Thống
+## 🏗️ System Architecture
 
 ### Backend (Python FastAPI)
-- ✅ API hoàn chỉnh với 20+ endpoints
-- ✅ Real OpenWeather API (thời tiết thực tế)
-- ✅ AI/ML: Tính ET0 với Hargreaves-Samani formula
-- ✅ Điều khiển van tưới (mô phỏng + ready for IoT)
-- ✅ Lịch sử, thống kê, báo cáo
+- ✅ Complete API with 20+ endpoints
+- ✅ Real OpenWeather API (real-time weather)
+- ✅ AI/ML: Calculate ET0 with Hargreaves-Samani formula
+- ✅ Irrigation valve control (simulation + ready for IoT)
+- ✅ History, statistics, reports
 
 ### Frontend (Vue 3 + TailwindCSS)
-- ✅ Dashboard dark mode chuyên nghiệp
-- ✅ Bản đồ trực tuyến (field locations)
-- ✅ Biểu đồ analytics (ET0, độ ẩm, dự báo)
-- ✅ Điều khiển van tưới (Start/Stop/Auto)
-- ✅ Xem thời tiết 7 ngày
-- ✅ Hiển thị khuyến nghị tưới
+- ✅ Professional dark mode dashboard
+- ✅ Online map (field locations)
+- ✅ Analytics charts (ET0, moisture, forecast)
+- ✅ Irrigation valve control (Start/Stop/Auto)
+- ✅ View 7-day weather
+- ✅ Display irrigation recommendations
 
-### Dữ Liệu
-- ✅ OpenWeather: Nhiệt độ, độ ẩm, gió, mưa
-- ✅ Satellite: NDVI (sức khỏe cây), NDWI (độ ẩm)
-- ✅ Cảm biến: Độ ẩm đất (sẵn sàng tích hợp)
+### Data
+- ✅ OpenWeather: Temperature, humidity, wind, rain
+- ✅ Satellite: NDVI (crop health), NDWI (moisture)
+- ✅ Sensors: Soil moisture (ready for integration)
 
 ---
 
-## 🚀 Tính Năng Chính
+## 🚀 Main Features
 
-| Tính Năng | Mô Tả | Status |
-|-----------|-------|--------|
-| Quản lý thửa ruộng | Tạo, liệt kê, xem chi tiết | ✅ |
-| Thời tiết real-time | Từ OpenWeather API | ✅ REAL |
-| Dữ liệu vệ tinh | NDVI, NDWI, stress maps | ✅ |
-| Tính ET0 | Hargreaves-Samani formula | ✅ |
-| Khuyến nghị tưới | AI-powered recommendations | ✅ |
-| Điều khiển van | Start/Stop/Auto irrigation | ✅ |
-| Lịch sử tưới | Event logging & analytics | ✅ |
-| Tiết kiệm nước | 30-40% vs traditional | ✅ |
+| Feature | Description | Status |
+|---------|-------------|--------|
+| Field management | Create, list, view details | ✅ |
+| Real-time weather | From OpenWeather API | ✅ REAL |
+| Satellite data | NDVI, NDWI, stress maps | ✅ |
+| ET0 calculation | Hargreaves-Samani formula | ✅ |
+| Irrigation recommendation | AI-powered recommendations | ✅ |
+| Valve control | Start/Stop/Auto irrigation | ✅ |
+| Irrigation history | Event logging & analytics | ✅ |
+| Water savings | 30-40% vs traditional | ✅ |
 | Dashboard | Dark mode, responsive | ✅ |
 | API Docs | Interactive Swagger UI | ✅ |
 
