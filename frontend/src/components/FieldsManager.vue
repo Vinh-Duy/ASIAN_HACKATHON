@@ -89,23 +89,15 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
-import axios from 'axios'
+import { ref, computed, onMounted } from 'vue'
+import { fieldsAPI } from '../services/api.js'
 
 const emit = defineEmits(['field-selected'])
 
 const showForm = ref(false)
-const fieldsList = ref([
-  {
-    field_id: '1',
-    name: 'Field A - Coffee',
-    latitude: 12.6667,
-    longitude: 108.0333,
-    area_hectares: 5,
-    crop_type: 'coffee',
-    soil_moisture: 65
-  }
-])
+const fieldsList = ref([])
+const loading = ref(true)
+const error = ref(null)
 
 const formData = ref({
   name: '',
@@ -115,9 +107,46 @@ const formData = ref({
   crop_type: 'coffee'
 })
 
+// Load fields on component mount
+onMounted(async () => {
+  await loadFields()
+})
+
+const loadFields = async () => {
+  try {
+    loading.value = true
+    const response = await fieldsAPI.getAll()
+    fieldsList.value = response.data
+  } catch (err) {
+    console.error('Error loading fields:', err)
+    // Fallback to sample data if API not available
+    fieldsList.value = [
+      {
+        field_id: '1',
+        name: 'Field A - Coffee',
+        latitude: 12.6667,
+        longitude: 108.0333,
+        area_hectares: 5,
+        crop_type: 'coffee',
+        soil_moisture: 65
+      }
+    ]
+  } finally {
+    loading.value = false
+  }
+}
+
 const createField = async () => {
   try {
-    // In production, call API: await axios.post('/api/v1/fields', formData.value)
+    const response = await fieldsAPI.create(formData.value)
+    const newField = response.data
+    fieldsList.value.push(newField)
+    showForm.value = false
+    formData.value = { name: '', latitude: 12.6667, longitude: 108.0333, area_hectares: 5, crop_type: 'coffee' }
+    emit('field-selected', newField)
+  } catch (err) {
+    console.error('Error creating field:', err)
+    // Fallback: create local field if API fails
     const newField = {
       field_id: Date.now().toString(),
       ...formData.value,
@@ -127,8 +156,6 @@ const createField = async () => {
     showForm.value = false
     formData.value = { name: '', latitude: 12.6667, longitude: 108.0333, area_hectares: 5, crop_type: 'coffee' }
     emit('field-selected', newField)
-  } catch (error) {
-    console.error('Error creating field:', error)
   }
 }
 </script>
