@@ -2,7 +2,6 @@
 AI/ML Service - Calculates Evapotranspiration and water requirements
 Using Hargreaves-Samani method and ML model
 """
-import numpy as np
 from datetime import datetime
 from typing import Dict, Any, Tuple
 import math
